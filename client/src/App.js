@@ -53,7 +53,7 @@ function App() {
 
         setDevs([...devs, response.data])
     }
-
+    
     return (
         <div id="app">
             <aside>
