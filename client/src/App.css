@@ -12,6 +12,14 @@
     margin-left: 30px;
 }
 
+aside {
+    width: 320px;
+    background: #FFF;
+    box-shadow: 0 0 14px 0 rgba(0, 0, 0, 0, 0.2);
+    border-radius: 2px;
+    padding: 30px 20px;
+}
+
 @media (max-width: 1000px){
     #app {
         flex-direction: row;
