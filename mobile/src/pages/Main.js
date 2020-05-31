@@ -7,9 +7,9 @@ import { MaterialIcons } from '@expo/vector-icons'
 import api from '../services/api';
 
 function Main({ navigation }) {
-    const [currentRegion, setCurrentRegion] = useState(null)
-    const [devs, setDevs] = useState([])
-    const [techs, setTechs] = useState('')
+    const [devs, setDevs] = useState([]);
+    const [currentRegion, setCurrentRegion] = useState(null);
+    const [techs, setTechs] = useState('');
     
     useEffect(() => {
         async function loadInitialPosition() {
@@ -32,6 +32,7 @@ function Main({ navigation }) {
         }
 
         loadInitialPosition()
+
     },[]);
 
     async function loadDevs() {
@@ -43,12 +44,12 @@ function Main({ navigation }) {
                 longitude,
                 techs
             }
-        });
+        })
 
-        setDevs(response.data);
+        setDevs(response.data.devs);
     }
 
-    function handleRegionChanged(region){
+    function handleRegionChange(region){
         setCurrentRegion(region);
     }
 
@@ -58,26 +59,24 @@ function Main({ navigation }) {
 
     return (
         <>
-            <MapView 
-                initialRegion={currentRegion} 
-                style={styles.map}
-                onRegionChangeComplete={handleRegionChanged}
-            >
-                {devs.map(dev => {
-                    <Marker 
-                        key={dev._id}
-                        coordinate={{ 
-                        latitude: dev.location.coordinates[0], 
-                        longitude: dev.location.coordinates[1] 
-                    }}
+            <MapView onRegionChange={handleRegionChange} initialRegion={currentRegion} style={ styles.map }>
+            { devs.map(dev => (
+                <Marker
+                    key={dev._id}
+                    coordinate={{
+                        longitude: dev.location.coordinates[0],
+                        latitude: dev.location.coordinates[1]
+                        }}
                 >
-                    <Image 
-                        style={styles.avatar} 
+                    <Image
+                        style={styles.avatar}
                         source={{ uri: dev.avatar_url }}
                     />
 
                     <Callout onPress={() => {
-                        navigation.navigate('Profile', { github_username: dev.github_username })
+                        navigation.navigate('Profile', {
+                            github_username: dev.github_username
+                        })
                     }}>
                         <View style={styles.callout}>
                             <Text style={styles.devName}>{dev.name}</Text>
@@ -86,11 +85,13 @@ function Main({ navigation }) {
                         </View>
                     </Callout>
                 </Marker>
-                })}
+
+                ))}
             </MapView>
-            <View stye={styles.searchForm}>
-                <TextInput 
-                    style={styles.searchInput} 
+
+            <View style={styles.searchForm}>
+                <TextInput
+                    style={styles.searchInput}
                     placeholder="Buscar devs por techs..."
                     placeholderTextColor="#999"
                     autoCapitalize="words"
@@ -100,7 +101,7 @@ function Main({ navigation }) {
                 />
 
                 <TouchableOpacity onPress={loadDevs} style={styles.loadButton}>
-                    <MaterialIcons name="my-location" size={20} color="#FFF" />
+                    <MaterialIcons name="my-location" size={20} color='#FFF' />
                 </TouchableOpacity>
             </View>
         </>
@@ -121,21 +122,21 @@ const styles = StyleSheet.create({
     },
 
     callout: {
-        width: 260,
+        width: 260
     },
-
-    devname: {
+    
+    devName: {
         fontWeight: 'bold',
         fontSize: 16
     },
 
     devBio: {
         color: '#666',
-        marginTop: 5,
+        marginTop: 5
     },
 
     devTechs: {
-        marginTop: 5,
+        marginTop: 5
     },
 
     searchForm: {
@@ -159,9 +160,9 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.2,
         shadowOffset: {
             width: 4,
-            height: 4,
+            height: 4
         },
-        elevation: 2,
+        elevation: 2
     },
 
     loadButton: {
@@ -173,7 +174,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginLeft: 15
     }
-
 })
 
 export default Main;
