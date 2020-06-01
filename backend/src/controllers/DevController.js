@@ -2,7 +2,6 @@
 
 const axios = require('axios');
 const Dev = require('../models/Dev');
-const parseStringAsArray = require('../utils/parseStringAsArray')
 
 module.exports = {
     async index(request, response) {
@@ -21,7 +20,7 @@ module.exports = {
     
             const { name = login, avatar_url, bio } = githubApiResponse.data;
         
-            const techsArray = parseStringAsArray(techs);
+            const techsArray = techs.split(',').map(tech => tech.trim())
         
             const location = {
                 type: 'Point',
