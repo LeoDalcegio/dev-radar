@@ -4,7 +4,17 @@ const socket = socketio('http://192.168.0.8:3333/api', {
     autoConnect: false,
 });
 
+function subscribeToNewDevs(subscribeFunction) {
+    socket.on('new-dev', subscribeFunction);
+}
+
 function connect() {
+    socket.io.opts.query = {
+        latitude,
+        longitude,
+        techs
+    }
+
     socket.connect();
 }
 
