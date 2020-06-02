@@ -1,14 +1,16 @@
 import socketio from 'socket.io-client';
 
-const socket = socketio('http://192.168.0.8:3333/api', {
+const socket = socketio('http://192.168.0.8:3333', {
     autoConnect: false,
 });
 
 function subscribeToNewDevs(subscribeFunction) {
+    console.log('leo teste')
+
     socket.on('new-dev', subscribeFunction);
 }
 
-function connect() {
+function connect(latitude, longitude, techs) {
     socket.io.opts.query = {
         latitude,
         longitude,
@@ -27,4 +29,5 @@ function disconnect() {
 export {
     connect,
     disconnect,
+    subscribeToNewDevs
 }
