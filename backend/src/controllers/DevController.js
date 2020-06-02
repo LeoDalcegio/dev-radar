@@ -27,7 +27,7 @@ module.exports = {
                 type: 'Point',
                 coordinates: [longitude, latitude]
             }
-        
+            
             dev = await Dev.create({
                 github_username,
                 name,
@@ -38,13 +38,15 @@ module.exports = {
             });
 
             const sendSocketMessageTo = findConnections(
-                { latitude, longitude },
-                techsArray
+                {latitude, longitude},
+                techsArray,
             )
+                
+            sendMessage(sendSocketMessageTo,'new-dev',dev);
 
-            sendMessage(sendSocketMessageTo, 'new-dev', dev);
+            return response.json(dev);            
         }
-    
-        return response.json(dev);
+        
+        return response.status(409).send({ error: 'Dev already exist' });
     },
 }
