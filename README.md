@@ -6,12 +6,12 @@
   🚀 OmniStack Week 10.0
 </h4>
 <p align="center">
-  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/LeoDalcegio/semana-omnistack-10">
+  <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/LeoDalcegio/dev-radar">
 
-  <img alt="Repository size" src="https://img.shields.io/github/repo-size/LeoDalcegio/semana-omnistack-10">
+  <img alt="Repository size" src="https://img.shields.io/github/repo-size/LeoDalcegio/dev-radar">
   
-  <a href="https://github.com/LeoDalcegio/semana-omnistack-10/commits/master">
-    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/LeoDalcegio/semana-omnistack-10">
+  <a href="https://github.com/LeoDalcegio/dev-radar/commits/master">
+    <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/LeoDalcegio/dev-radar">
   </a>
 
   <img alt="License" src="https://img.shields.io/badge/license-MIT-brightgreen">
